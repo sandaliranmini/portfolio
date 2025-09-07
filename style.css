@@ -3,8 +3,8 @@
   --color-light: #F3B3A6;
   --color-medium: #B98B82;
   --color-accent: #E4959E;
-  --color-dark: #37515F;
-  --color-bg: #1F0812;
+  --color-dark:#1F0812;
+  --color-bg: #FFEDE6;
 }
 
 * {
@@ -16,9 +16,13 @@
 body {
   font-family: 'Poppins', sans-serif;
   line-height: 1.6;
-  background-color: var(--color-bg);
+  background-image: url(34f1953d62f10b38e9d10982d3a760d9.jpg) ;
+  background-repeat:repeat; 
+  background-size: cover;
+  background-position: center;
   color: var(--color-light);
 }
+
 
 /*Navbar*/
 header {
