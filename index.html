@@ -1,122 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ranmini Peiris – Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#eef1f0; --ink:#13231f; --muted:#52635e; --line:#c9d3cf;
+  --accent:#8d153a; --accent-ink:#ffffff; --green:#0b5d52; --surface:#f8faf9;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0e1a17; --ink:#e8efec; --muted:#9db0aa; --line:#25373235;
+    --line:#2a3d37; --accent:#e0577e; --accent-ink:#0e1a17; --green:#5cc2b1; --surface:#13231f;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0e1a17; --ink:#e8efec; --muted:#9db0aa; --line:#2a3d37;
+  --accent:#e0577e; --accent-ink:#0e1a17; --green:#5cc2b1; --surface:#13231f; color-scheme:dark;
+}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:62rem;margin:0 auto;padding:0 1.5rem}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.5rem}
+.brand{font-family:var(--display);font-weight:800;text-decoration:none;font-size:1.15rem}
+nav{display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap}
+nav a{text-decoration:none;color:var(--muted);font-weight:500}
+nav a:hover{color:var(--ink)}
+#theme{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:.3rem .8rem;font:inherit;font-size:.9rem;cursor:pointer}
+
+.hero{padding:clamp(3rem,10vw,7rem) 0 clamp(3rem,8vw,5rem);position:relative}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,9vw,6.2rem);line-height:.98;letter-spacing:-.03em;margin:0 0 1.5rem;max-width:14ch}
+.hero p{font-size:clamp(1.1rem,2.4vw,1.35rem);max-width:36rem;color:var(--muted);margin:0 0 2rem}
+.btns{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.75rem 1.4rem;border-radius:.4rem;text-decoration:none;font-weight:600;border:2px solid var(--accent)}
+.btn.main{background:var(--accent);color:var(--accent-ink)}
+.btn.alt{color:var(--accent)}
+.stamp{position:absolute;right:0;top:clamp(2rem,6vw,4.5rem);width:clamp(7rem,18vw,11rem);aspect-ratio:1;border:3px solid var(--accent);border-radius:50%;display:grid;place-items:center;text-align:center;color:var(--accent);font-family:var(--display);font-weight:800;line-height:1.1;font-size:clamp(.8rem,1.8vw,1.1rem);transform:rotate(-12deg);opacity:.9;animation:press .5s .2s cubic-bezier(.2,1.6,.4,1) both}
+.stamp span{display:block;padding:.4rem;border:1.5px solid var(--accent);border-radius:50%;width:84%;aspect-ratio:1;display:grid;place-items:center}
+@keyframes press{from{transform:rotate(-12deg) scale(1.8);opacity:0}to{transform:rotate(-12deg) scale(1);opacity:.9}}
+@media (max-width:640px){.stamp{display:none}}
+
+section{padding:clamp(2.5rem,7vw,4.5rem) 0;border-top:1px solid var(--line)}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,4vw,2.4rem);letter-spacing:-.02em;margin:0 0 2rem}
+
+.projects{display:grid;gap:0}
+details{border-bottom:1px solid var(--line)}
+details:first-child{border-top:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:1.25rem 0;font-family:var(--display);font-weight:800;font-size:clamp(1.3rem,3vw,1.8rem);letter-spacing:-.01em}
+summary::-webkit-details-marker{display:none}
+summary .kind{font-family:var(--body);font-weight:500;font-size:.95rem;color:var(--muted);text-align:right}
+summary::after{content:"+";font-family:var(--body);color:var(--accent);font-size:1.6rem;font-weight:500;margin-left:.5rem}
+details[open] summary::after{content:"–"}
+details[open] summary{color:var(--accent)}
+.body{padding:0 0 1.5rem;max-width:42rem;color:var(--ink)}
+.body p{margin:0 0 1rem}
+.tags{display:flex;gap:.5rem;flex-wrap:wrap;padding:0;margin:0;list-style:none}
+.tags li{border:1px solid var(--green);color:var(--green);padding:.15rem .65rem;border-radius:999px;font-size:.9rem;font-weight:500}
+
+.slider{position:relative;margin:0 0 1rem}
+.track{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.track img{flex:0 0 100%;width:100%;height:22rem;object-fit:contain;scroll-snap-align:center;background:var(--surface);border:1px solid var(--line);border-radius:.4rem;cursor:zoom-in}
+.count{display:block;text-align:center;color:var(--muted);font-size:.9rem;margin-top:.5rem}
+.slider .nav{position:absolute;top:calc(50% - 1.5rem);width:2.5rem;height:2.5rem;border-radius:50%;border:0;background:var(--accent);color:var(--accent-ink);font-size:1.25rem;cursor:pointer;z-index:2}
+.slider .prev{left:.5rem}
+.slider .next{right:.5rem}
+.proj-links{display:flex;gap:1.25rem;flex-wrap:wrap;margin:0 0 1rem;font-weight:600}
+.proj-links a{color:var(--accent)}
+dialog#lightbox{border:0;padding:0;background:transparent;max-width:95vw;max-height:95vh;overflow:visible}
+dialog#lightbox::backdrop{background:rgba(0,0,0,.85)}
+#lightbox img{max-width:95vw;max-height:90vh;display:block;border-radius:.4rem}
+#lightbox .close{position:absolute;top:-2.75rem;right:0;background:none;border:0;color:#fff;font-size:2rem;cursor:pointer}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+@media (max-width:720px){.cols{grid-template-columns:1fr}}
+.cols p{margin:0 0 1rem;max-width:34rem}
+.skill-group{margin-bottom:1.25rem}
+.skill-group h3{font-size:1rem;margin:0 0 .5rem;font-weight:600}
+
+.contact a.big{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,5vw,2.6rem);letter-spacing:-.02em;word-break:break-word;text-decoration-color:var(--accent);text-underline-offset:.2em}
+.links{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem}
+footer{padding:2rem 0;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.stamp{animation:none}}
+</style>
 </head>
 <body>
-
-  <!-- Navigation Bar -->
-  <header>
-    <nav>
-      <h1>Ranmini Peiris</h1>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Ranmini Peiris</a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button id="theme" type="button" aria-label="Switch colour theme">Theme</button>
     </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section id="home">
-    <div>
-    <h2 id="animated-text"></h2>
-    <p>Aspiring Information Systems Undergraduate</p>
-    <a href="https://github.com/sandaliranmini" class="btn">View My Work</a>
   </div>
-    <img src="20240913_102859.jpg" alt="My Profile Picture" class="image">
-  </section>
+</header>
 
-  <!-- About Section -->
-  <section id="about">
-  <h2>About Me</h2>
-    <div class="about-text">
-      <p>Hello! I’m <strong>Ranmini Peiris</strong>, an Information Systems undergraduate passionate about <strong>web development</strong> and <strong>problem-solving</strong>.  
-      I enjoy creating websites and applications that make life easier and more engaging.</p><br>
-      
-      <p>Currently pursuing my degree, I’ve worked on several projects involving <strong>HTML, CSS, JavaScript, and MySQL</strong>. I love learning new technologies and applying them to real-world challenges.</p><br>
-      
-      <p>Beyond coding, I enjoy writing stories and exploring creative ideas that inspire innovation.  
-      I’m always open to <strong>collaborating</strong> on exciting projects or exploring internship opportunities.</p><br><br>
-      
-      <h3 style="text-align: center;">Let's Connect</h3>
-      <div class="con">
-      <a href="mailto:sandaliranmini2000@gmail.com" class="btn">Gmail</a>
-      <a href="https://www.linkedin.com/in/sandali-ranmini-b2a569328/" class="btn" >Linkedin</a>
-      </div><br><br>
+<main id="top">
+  <div class="wrap hero">
+    <div class="stamp" aria-hidden="true"><span>Problem <br>solved</span></div>
+    <h1>I turn everyday problems into simple, working products.</h1>
+    <p>I’m Ranmini, a developer and designer. I plan, design and build digital products, from the first wireframe to a working app.</p>
+    <div class="btns">
+      <a class="btn main" href="#work">See my work</a>
+      <a class="btn alt" href="#contact">Get in touch</a>
+    </div>
+  </div>
 
-      <h3 style="font-size: 30px;">Skills</h3>
-      <h4 style="text-align: center; font-size: 25px;">Languages</h4>
-      <div class="lang">
-      <img src="html.svg">
-      <img src="css.svg">
-      <img src="javascript.svg">
-      <img src="java.svg">
-      <img src="c.svg">
-      <img src="python.svg">
-      </div><br>
+  <section id="work">
+    <div class="wrap">
+      <h2>Selected work</h2>
+      <div class="projects">
+        <details open>
+          <summary>Smart Grama Sewa <span class="kind">Civic platform</span></summary>
+          <div class="body">
+            <p>A platform that connects citizens with their local Grama Niladhari (GN) officers. I built it in React, including a portal for GN officers to manage the requests they receive.</p>
+            <ul class="tags"><li>React</li><li>Civic tech</li><li>Government services</li></ul>
+            <div class="slider">
+              <button class="nav prev" type="button" aria-label="Previous image">‹</button>
+              <div class="track">
+                <img src="Images\GN_Dashboard.png" alt="Smart Grama Sewa" loading="lazy">
+                <img src="Images\GN-Appointments.png" alt="Smart Grama Sewa" loading="lazy">
+                <img src="Images\GN- Schedule.png" alt="Smart Grama Sewa" loading="lazy">
+                <img src="Images\GN-Announcement_;ist.png" alt="Smart Grama Sewa" loading="lazy">
+                <img src="Images\GN-ctizen search.png" alt="Smart Grama Sewa" loading="lazy">
+                <img src="Images\GN_profile.png" alt="Smart Grama Sewa" loading="lazy">
+                <img src="Images\GN-Settings.png" alt="Smart Grama Sewa" loading="lazy"> 
 
-<h4 style="text-align: center; font-size: 25px;">Databases</h4>
-<img src="mysql.svg"><br>
-    
-      <h4 style="text-align: center; font-size: 25px;">IDE</h4>
-      <div class="lang">
-<img src="vscode.svg">
-<img src="intellij.svg">
-<img src="pycharm.svg">
-      </div><br>
+              </div>
+              <button class="nav next" type="button" aria-label="Next image">›</button>
+            </div>
+            <p class="proj-links">
+              <a href="https://www.figma.com/design/l6eETaR37bEVnpUX5SyfwK/Smart-Grama-Sewa?node-id=241-2&t=IPUVL3lnWHPlcfZe-1" target="_blank" rel="noopener">Figma</a>
+              <a href="https://github.com/Vishmi-Amandi/smart-grama-sewa" target="_blank" rel="noopener">GitHub</a>
+            </p>
+          </div>
+        </details>
 
-      <h4 style="text-align: center; font-size: 25px;">Other tools and Technologies</h4>
-      <div class="lang">
-<img src="github.svg"><br>
+        <details>
+          <summary>Urban Eye <span class="kind">Triage system</span></summary>
+          <div class="body">
+            <p>A civic issue triage and verification system designed for a Sri Lankan municipal council. Citizens are identified by NIC, reports follow one of two triage tracks, and an issue closes only when proof of the work is submitted.</p>
+            <ul class="tags"><li>System design</li><li>Process modelling</li><li>Civic tech</li></ul>
 
+            <div class="slider">
+              <button class="nav prev" type="button" aria-label="Previous image">‹</button>
+              <div class="track">
+                <img src="Images\Citizen login.jpg" alt="Urban Eye" loading="lazy">
+                <img src="Images\Officer login.jpg" alt="Urban Eye" loading="lazy">
+                <img src="Images\Register.jpg" alt="Urban Eye" loading="lazy">
+                <img src="Images\Admin_ Add Officers.jpg" alt="Urban Eye" loading="lazy">
+                <img src="Images\Change Password.jpg" alt="Urban Eye" loading="lazy">
+                <img src="Images\Citizen Profile.jpg" alt="Urban Eye" loading="lazy">
+                <img src="Images\Officer Profile.jpg" alt="Urban Eye" loading="lazy">
+                <img src="Images\Edit Profile.jpg" alt="Urban Eye" loading="lazy">
+              </div>
+              <button class="nav next" type="button" aria-label="Next image">›</button>
+            </div>
+            <p class="proj-links">
+              <a href="https://www.figma.com/design/l6ShUe4aXNBKWnA1QSIpFb/Urban-eye?node-id=71-220&t=Yy3UgeYcVVwk1EPI-1" target="_blank" rel="noopener">Figma</a>
+              <a href="https://github.com/sandaliranmini/Urban_Eye" target="_blank" rel="noopener">GitHub</a>
+            </p>
+          </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>DermaMirror AI <span class="kind">Mobile app design</span></summary>
+          <div class="body">
+            <p>An AI skincare mobile app created for an academic project. I designed 16 low-fidelity wireframes and linked them into a clickable low-fidelity prototype.</p>
+            <ul class="tags"><li>UX design</li><li>Wireframing</li><li>Prototyping</li></ul>
+            <div class="slider">
+              <button class="nav prev" type="button" aria-label="Previous image">‹</button>
+              <div class="track">
+                <img src="Images\DermaLoading (1).png" alt="DermaMirror AI" loading="lazy">
+                <img src="Images\DermaWelcome 1.png" alt="DermaMirror AI" loading="lazy">
+                <img src="Images\DermaWelcome 2.png" alt="DermaMirror AI" loading="lazy">
+                <img src="Images\DermaWelcome 3.png" alt="DermaMirror AI" loading="lazy">
+                <img src="Images\DermaSign up (1).png" alt="DermaMirror AI" loading="lazy">
+                <img src="Images\DermaSign in (1).png" alt="DermaMirror AI" loading="lazy">
+                <img src="Images\DermaForgot password (1).png" alt="DermaMirror AI" loading="lazy">
+                <img src="Images\DermaProfile Setup (1).png" alt="DermaMirror AI" loading="lazy">
+                <img src="Images\DermaHome Dashboard (1).png" alt="DermaMirror AI" loading="lazy">
+              </div>
+              <button class="nav next" type="button" aria-label="Next image">›</button>
+            </div>
+            <p class="proj-links">
+              <a href="https://www.figma.com/design/aLGzv7GRfLIDcUqENNlCnJ/DermaMirror-AI?node-id=63-156&t=vE3FWE2lNn8ErnPc-1" target="_blank" rel="noopener">Figma</a>
+              <a href="https://www.figma.com/proto/aLGzv7GRfLIDcUqENNlCnJ/DermaMirror-AI?node-id=63-156&t=vE3FWE2lNn8ErnPc-1" target="_blank" rel="noopener">GitHub</a>
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>360LK <span class="kind">Web app</span></summary>
+          <div class="body">
+            <p>A new web application built with Next.js, TypeScript and React.</p>
+            <ul class="tags"><li>Next.js</li><li>TypeScript</li><li>React</li></ul>
+            <div class="slider">
+              <button class="nav prev" type="button" aria-label="Previous image">‹</button>
+              <div class="track">
+                <img src="Images\360lk-1.png" alt="360LK" loading="lazy">
+                <img src="Images\360lk2.png" alt="DermaMirror AI" loading="lazy">
+                <img src="Images\360lk3.png" alt="DermaMirror AI" loading="lazy">
+                <img src="Images\360lk4.png" alt="DermaMirror AI" loading="lazy">
+                <img src="Images\360lk5.png" alt="DermaMirror AI" loading="lazy">
+                <img src="Images\360lk5.png" alt="DermaMirror AI" loading="lazy">
+              </div>
+              <button class="nav next" type="button" aria-label="Next image">›</button>
+            </div>
+            <p class="proj-links">
+              <a href="https://www.figma.com/design/KHzhIidx1j70VuHpCz12ek/360LK?node-id=15-33&t=NHeaUTTJZ0tBEzx1-1" target="_blank" rel="noopener">Figma</a>
+              <a href="https://github.com/GeethmaSamarasinghe/360LK" target="_blank" rel="noopener">Prototype</a>
+            </p>
+          </div>
+        </details>
       </div>
     </div>
-</section>
+  </section>
 
-
-  <!-- Projects Section -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="slider">
-    <button class="arrow left">&#10094;</button> <!-- Left arrow -->
-
-    <div class="slides">
-    <div class="project">
-      <img src="project 1.png" alt="Project 1">
-      <h3>Fit And Glow</h3>
-      <p>It is a fitness web site for women. HTML and CSS are mainly used for this project. Java script also used a little.</p>
-      <a href="https://github.com/sandaliranmini/My-First-Web-Project.git">GitHub Repo</a> | <a href="https://www.linkedin.com/posts/sandali-ranmini-b2a569328_webdevelopment-fitandglow-html-activity-7257831882170470400-Gr1G?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFKqJRIBRRCdl4rihP4YbboBlLf4ulTWy-E">Live Demo</a>
-    </div>
-
-      <div class="project">
-      <img src="project 2.png" alt="Project 2">
-      <h3>Ranmini Peiris</h3>
-      <p>This is my personal portfolio website built with HTML, CSS, and JavaScript to showcase my skills, projects, and contact details in a clean and responsive design.</p>
-      <a href="https://github.com/sandaliranmini/portfolio.git">GitHub Repo</a>
-    </div>
-    </div>
-    <button class="arrow right">&#10095;</button> <!-- Right arrow -->
+  <section id="about">
+    <div class="wrap">
+      <h2>About</h2>
+      <div class="cols">
+        <div>
+          <p>I like starting with a messy problem and working out what people actually need before I build anything. I work across design and code, from process models and wireframes to working front ends.</p>
+          <p>I work across design and code, from process models and wireframes to working front ends.</p>
+        </div>
+        <div>
+          <div class="skill-group"><h3>Build</h3>
+            <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>React</li><li>Next.js</li><li>TypeScript</li></ul></div>
+          <div class="skill-group"><h3>Design and analysis</h3>
+            <ul class="tags"><li>Wireframes</li><li>Prototyping</li><li>Business process modelling</li></ul></div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-  <h2>Contact Me</h2>
-  <p>Email me directly: <a href="mailto:sandaliranmini2000@gmail.com">sandaliranmini2000@gmail.com</a></p>
-  <p>Contact me through linkedin: <a href="https://www.linkedin.com/in/sandali-ranmini-b2a569328/">Sandali Ranmini</a></p>
-</section>
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <a class="big" href="mailto:sandaliranmini2000@gmail.com">sandaliranmini2000@gmail.com</a>
+      <div class="links">
+        <a href="https://github.com/sandaliranmini">GitHub</a>
+        <a href="https://www.linkedin.com/in/ranmini-peiris-b2a569328/">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
 
+<footer><div class="wrap">© <span id="yr">2026</span> Ranmini Peiris. Colombo, Sri Lanka.</div></footer>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Ranmini Peiris | All Rights Reserved</p>
-  </footer>
+<dialog id="lightbox" aria-label="Image viewer">
+  <button class="close" type="button" aria-label="Close">×</button>
+  <img alt="">
+</dialog>
 
-  <script src="script.js"></script>
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme');
+  try{var s=localStorage.getItem('theme'); if(s==='light'||s==='dark')root.setAttribute('data-theme',s);}catch(e){}
+  btn.addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark' ||
+      (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+    var next=dark?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next);}catch(e){}
+  });
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  // Keep one project open at a time
+  var items=document.querySelectorAll('.projects details');
+  items.forEach(function(d){d.addEventListener('toggle',function(){
+    if(d.open)items.forEach(function(o){if(o!==d)o.open=false;});
+  });});
+})();
+
+// Image sliders and viewer
+var box=document.getElementById('lightbox'), boxImg=box.querySelector('img'), current=null, list=[];
+function show(i){
+  if(!list.length)return;
+  current=(i+list.length)%list.length;
+  boxImg.src=list[current].src; boxImg.alt=list[current].alt;
+}
+document.querySelectorAll('.slider').forEach(function(s){
+  var track=s.querySelector('.track');
+  s.querySelector('.prev').addEventListener('click',function(){track.scrollBy({left:-track.clientWidth*.8});});
+  s.querySelector('.next').addEventListener('click',function(){track.scrollBy({left:track.clientWidth*.8});});
+  var imgs=Array.prototype.slice.call(track.querySelectorAll('img'));
+  imgs.forEach(function(img,i){
+    img.tabIndex=0;
+    function open(){list=imgs;show(i);box.showModal();}
+    img.addEventListener('click',open);
+    img.addEventListener('keydown',function(e){if(e.key==='Enter')open();});
+  });
+});
+box.querySelector('.close').addEventListener('click',function(){box.close();});
+box.addEventListener('click',function(e){if(e.target===box)box.close();});
+box.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight')show(current+1);
+  if(e.key==='ArrowLeft')show(current-1);
+});
+</script>
 </body>
 </html>
