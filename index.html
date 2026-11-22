@@ -88,6 +88,31 @@ dialog#lightbox::backdrop{background:rgba(0,0,0,.85)}
 #lightbox img{max-width:95vw;max-height:90vh;display:block;border-radius:.4rem}
 #lightbox .close{position:absolute;top:-2.75rem;right:0;background:none;border:0;color:#fff;font-size:2rem;cursor:pointer}
 
+.cs-wrap { max-width: 900px; margin: 0 auto; padding: 1rem; font: inherit; color: inherit; }
+  .cs-wrap h2 { margin: 0 0 1rem; }
+  .cs {
+    margin: 0 0 1rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid rgba(128, 128, 128, 0.35);
+    border-radius: 12px;
+  }
+  .cs h3 { margin: 0 0 0.75rem; font-size: 1.15rem; }
+  .cs dl { margin: 0; }
+  .cs dt {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .cs dd { margin: 0.2rem 0 0; line-height: 1.6; }
+  @media (min-width: 700px) {
+    .cs dl { display: grid; grid-template-columns: 11rem 1fr; column-gap: 1rem; }
+    .cs dt { margin-top: 0.75rem; }
+    .cs dd { margin-top: 0.75rem; }
+  }
+
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
 @media (max-width:720px){.cols{grid-template-columns:1fr}}
 .cols p{margin:0 0 1rem;max-width:34rem}
@@ -131,7 +156,14 @@ footer{padding:2rem 0;color:var(--muted);font-size:.9rem;border-top:1px solid va
         <details open>
           <summary>Smart Grama Sewa <span class="kind">Civic platform</span></summary>
           <div class="body">
-            <p>A platform that connects citizens with their local Grama Niladhari (GN) officers. I built it in React, including a portal for GN officers to manage the requests they receive.</p>
+            <article class="cs">
+              <dl>
+                <dt>Problem</dt>
+                <dd>Citizens often don’t know how to reach their Grama Niladhari officer, and officers have no single place to manage the requests, appointments and announcements that come in.</dd>
+                <dt>My role</dt>
+                <dd>Designed the interface in Figma and built it in React, including the GN officer portal: dashboard, appointments, schedule, announcements, citizen search, profile and settings.</dd>
+              </dl>
+            </article>
             <ul class="tags"><li>React</li><li>Civic tech</li><li>Government services</li></ul>
             <div class="slider">
               <button class="nav prev" type="button" aria-label="Previous image">‹</button>
@@ -157,7 +189,13 @@ footer{padding:2rem 0;color:var(--muted);font-size:.9rem;border-top:1px solid va
         <details>
           <summary>Urban Eye <span class="kind">Triage system</span></summary>
           <div class="body">
-            <p>A civic issue triage and verification system designed for a Sri Lankan municipal council. Citizens are identified by NIC, reports follow one of two triage tracks, and an issue closes only when proof of the work is submitted.</p>
+            <article class="cs">
+              <dl>
+                <dt>Problem</dt>
+                <dd>Municipal councils receive civic issue reports that are hard to verify and easy to lose, and citizens can’t tell whether a reported issue was ever fixed.</dd>
+                <dt>My role</dt>
+                <dd>Designed the system and its screens of Authentication: citizen and officer login, registration, admin officer management, and profile screens.</dd>
+            </article>
             <ul class="tags"><li>System design</li><li>Process modelling</li><li>Civic tech</li></ul>
 
             <div class="slider">
@@ -185,7 +223,14 @@ footer{padding:2rem 0;color:var(--muted);font-size:.9rem;border-top:1px solid va
         <details>
           <summary>DermaMirror AI <span class="kind">Mobile app design</span></summary>
           <div class="body">
-            <p>An AI skincare mobile app created for an academic project. I designed 16 low-fidelity wireframes and linked them into a clickable high-fidelity prototype.</p>
+            <article class="cs">
+              <dl>
+                <dt>Problem</dt>
+                <dd>People who want to look after their skin find advice scattered and impersonal, and they hesitate to share personal photos with an app they don’t trust.</dd>
+                <dt>My role</dt>
+                <dd>UI/UX designer on a personal project. I designed 16 wireframes and linked them into a clickable prototype, and built the high-fidelity version.</dd>
+              </dl>
+            </article>
             <ul class="tags"><li>UX design</li><li>Wireframing</li><li>Prototyping</li></ul>
             <div class="slider">
               <button class="nav prev" type="button" aria-label="Previous image">‹</button>
@@ -212,7 +257,14 @@ footer{padding:2rem 0;color:var(--muted);font-size:.9rem;border-top:1px solid va
         <details>
           <summary>360LK <span class="kind">Web app</span></summary>
           <div class="body">
-            <p>A new web application built with Next.js, TypeScript and React.</p>
+            <article class="cs">
+              <dl>
+                <dt>Problem</dt>
+                <dd>Tourists planning a trip to Sri Lanka find it hard to know what a place is really like before they go. 360LK is a virtual tourism platform that lets visitors explore Sri Lanka’s tourist attractions online, so they can experience them first and be encouraged to visit.</dd>
+                <dt>My role</dt>
+                <dd>Designed the interface in Figma and built the web app with HTML, CSS and JavaScript.</dd>
+              </dl>
+            </article>
             <ul class="tags"><li>Next.js</li><li>TypeScript</li><li>React</li></ul>
             <div class="slider">
               <button class="nav prev" type="button" aria-label="Previous image">‹</button>
